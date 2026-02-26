@@ -1,35 +1,52 @@
+import java.util.Scanner;
+
 /**
- * MAIN CLASS - UsceCase1PalindromeCheckerApp
- * UseCase1:Application Entry And  Welcome Message
+ * MAIN CLASS - UsceCase3PalindromeCheckerApp
+ Use Case 3: Reverse String Based Palindrome Check
  *
  * Description:
- * This class represents the entry point of the Palindrome Checker Management System
+ * This class checks whether a string is a palindrome
+ * by reversing the string and comparing it with
+ * the original value.
  *
  * At this stage, the application:
- * - Starts execution from the main() method
- * - Displays a welcome message
- * - Shows application version
+ * - Iterates the string in reverse order
+ * - Builds a reversed version
+ * - Compares original and reversed strings
+ * - Displays the validation result
  *
- *  No palindrome logic is implemented yet.
+ * This introduces transformation-based validation.
  *
- *  The goal is to establish a clear startup flow.
- *
- *  @author Sathwik-Vurimi
- *  @version 1.0
+ * @author Sathwik-Vurimi
+ * @version 3.0
  */
 public class PalindromeCheckerApp {
     /**
-     * Application entry point.
-     *
-     * This is the first method executed by the JVM
-     * when the program starts.
+     * Application entry point for UC3.
      *
      * @param args Command-line arguments
      */
 public static void main(String[] args){
-            System.out.println("Welcome to the Palindrome Checker Management System");
-            System.out.println("Version : 1.0");
-            System.out.println("System initialized successfully.");
+    Scanner scanner = new Scanner(System.in);
+
+    // Taking input
+    System.out.print("Input text: ");
+    String input = scanner.nextLine();
+
+    String reversed = "";
+
+    // Iterate from the last character to the first
+    for (int i = input.length() - 1; i >= 0; i--) {
+        reversed = reversed + input.charAt(i);
+    }
+
+    // Compare original and reversed strings
+    boolean isPalindrome = input.equals(reversed);
+
+    // Display result
+    System.out.println("Is it a Palindrome? : " + isPalindrome);
+
+    scanner.close();
 
         }
     }
