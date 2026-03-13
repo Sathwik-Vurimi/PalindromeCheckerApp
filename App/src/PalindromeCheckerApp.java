@@ -1,24 +1,20 @@
 /**
  * ================================================================
- * MAIN CLASS – UseCase7PalindromeCheckerApp
+ * MAIN CLASS – UseCase8PalindromeCheckerApp
  * ================================================================
- * Use Case 7 : Deque Based Optimized Palindrome Checker
+ * Use Case 8 : LinkedList Based Palindrome Checker
  * Description:
  * This program checks whether a string is a palindrome
- * using a Deque (Double Ended Queue).
- * A Deque allows insertion and removal from both ends.
- * Operations used:
- * 1. addLast()      -> insert character at end
- * 2. removeFirst()  -> remove character from front
- * 3. removeLast()   -> remove character from rear
- * If characters from front and rear match until the
- * middle is reached, the string is a palindrome.
+ * using a LinkedList.
+ * Characters are inserted into the LinkedList and then
+ * compared from both ends using:
+ * removeFirst()  -> removes element from beginning
+ * removeLast()   -> removes element from end
+ * If all characters match, the string is a palindrome.
  * @author Sathwik-Vurimi
- * @version 7.0
+ * @version 8.0
  */
-
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.LinkedList;
 
 public class PalindromeCheckerApp {
 
@@ -28,26 +24,26 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
         // Define the input string
-        String input = "refer";
+        String input = "level";
 
-        // Create a Deque to store characters
-        Deque<Character> deque = new ArrayDeque<>();
+        // Create a LinkedList to store characters
+        LinkedList<Character> list = new LinkedList<>();
 
-        // Add each character of string into deque
+        // Add each character of the string into the LinkedList
         for (char c : input.toCharArray()) {
-            deque.addLast(c);
+            list.add(c);
         }
 
-        // Flag to track palindrome result
+        // Flag to track palindrome state
         boolean isPalindrome = true;
 
-        // Continue comparison while more than one element exists
-        while (deque.size() > 1) {
+        // Compare until only one or zero elements remain
+        while (list.size() > 1) {
 
-            char front = deque.removeFirst();
-            char rear = deque.removeLast();
+            char first = list.removeFirst();
+            char last = list.removeLast();
 
-            if (front != rear) {
+            if (first != last) {
                 isPalindrome = false;
                 break;
             }
