@@ -1,53 +1,56 @@
 import java.util.Scanner;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
 /**
- * MAIN CLASS - UsceCase4PalindromeCheckerApp
- * Use Case 4: Character Array Based Validation
+ * ================================================================
+ * MAIN CLASS - UseCase6PalindromeCheckerApp
+ * ================================================================
+ * Use Case 6: Queue + Stack Based Palindrome Check
  * Description:
- * This class validates a palindrome by converting
- * the string into a character array and comparing
- * characters using the two-pointer technique.
- * At this stage, the application:
- * - Converts string to char array
- * - Uses start and end pointers
- * - Compares characters efficiently
- * - Displays the result
- * This reduces extra memory usage.
- *
+ This program checks whether a given string is a palindrome
+ * using two data structures:
+ * Queue  -> FIFO (First In First Out)
+ * Stack  -> LIFO (Last In First Out)
+ * Logic:
+ * 1. Insert each character into both a queue and a stack.
+ * 2. Remove characters from the front of the queue and the top of the stack.
+ * 3. Compare them.
+ * 4. If all characters match, the string is a palindrome.
  * @author Sathwik-Vurimi
- * @version 4.0
- */
-/**
- * Application entry point for UC4.
+ * @version 6.0
  *
- * @param args Command-line arguments
  */
-void main() {
-    // Declare and initialize the input string
-    String input = "radar";
 
-    // Convert the string into a character array
-    char[] chars = input.toCharArray();
+public class PalindromeCheckerApp {
 
-    // Initialize pointer at the beginning
-    int start = 0;
+    public static void main(String[] args) {
 
-    // Initialize pointer at the end
-    int end = chars.length - 1;
+        System.out.println("Palindrome Checker App");
+        System.out.println();
 
-    // Assume palindrome initially
-    boolean isPalindrome = true;
+        Scanner sc = new Scanner(System.in);
 
-    // Continue comparison until pointers cross
-    while (start < end) {
-        if (chars[start] != chars[end]) {
-            isPalindrome = false;
-            break;
+        System.out.print("Input text: ");
+        String text = sc.nextLine();
+
+        Queue<Character> queue = new LinkedList<>();
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : text.toCharArray()) {
+            queue.add(c);
+            stack.push(c);
         }
-        start++;
-        end--;
-    }
 
-    // Display output
-    IO.println("Input : " + input);
-    IO.println("Is Palindrome? : " + isPalindrome);
+        boolean isPalindrome = true;
+
+        while (!queue.isEmpty()) {
+            if (!queue.remove().equals(stack.pop())) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        System.out.println("Is it a Palindrome? : " + isPalindrome);
+    }
 }
